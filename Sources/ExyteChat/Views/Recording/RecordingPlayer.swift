@@ -11,6 +11,7 @@
 final actor RecordingPlayer: ObservableObject {
 
     @MainActor @Published var playing = false
+    @MainActor @Published var currentURL: URL? = nil
     @MainActor @Published var duration: Double = 0.0
     @MainActor @Published var secondsLeft: Double = 0.0
     @MainActor @Published var progress: Double = 0.0
@@ -23,9 +24,11 @@ final actor RecordingPlayer: ObservableObject {
             Task { @MainActor in
                 self.progress = 0
                 if let r = await self.recording {
+                    self.currentURL = r.url
                     self.duration = r.duration
                     self.secondsLeft = r.duration
                 } else {
+                    self.currentURL = nil
                     self.duration = 0
                     self.secondsLeft = 0
                 }
