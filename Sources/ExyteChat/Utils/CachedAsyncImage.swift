@@ -17,6 +17,10 @@ import Kingfisher
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct CachedAsyncImage<Content>: View where Content: View {
 
+    /// The cache backing `CachedAsyncImage`, exposed so other views (e.g. avatars
+    /// elsewhere in the app) can share the same cache instance.
+    public static var imageCache: ImageCache { KingfisherManager.shared.cache }
+
     @State private var phase: AsyncImagePhase
 
     private let url: URL?
