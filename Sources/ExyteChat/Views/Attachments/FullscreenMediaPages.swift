@@ -10,7 +10,6 @@ struct FullscreenMediaPages: View {
     @Environment(\.chatTheme) private var theme
 
     @StateObject var viewModel: FullscreenMediaPagesViewModel
-    var safeAreaInsets: EdgeInsets
     var showShareButton: Bool = true
     var onClose: () -> Void
 
@@ -76,7 +75,6 @@ struct FullscreenMediaPages: View {
             Text("\(viewModel.index + 1)/\(viewModel.attachments.count)")
                 .foregroundColor(tintColor)
         }
-        .padding(.top, safeAreaInsets.top)
         .padding(.bottom, 8)
     }
 

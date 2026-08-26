@@ -172,7 +172,6 @@ public struct ChatView<MessageContent: View, InputViewContent: View, MenuAction:
             ) { medias in
                 inputViewModel.attachments.medias = medias
             }
-            .fullScreenCover(isPresented: $viewModel.fullscreenAttachmentPresented) {
             .sheet(isPresented: $inputViewModel.showDocumentPicker) {
                 DocumentPicker { documents in
                     inputViewModel.attachments.documents.append(contentsOf: documents)
@@ -186,6 +185,7 @@ public struct ChatView<MessageContent: View, InputViewContent: View, MenuAction:
                     inputViewModel.attachments.liveLocation = liveLocation
                 }
             }
+            .fullScreenCover(isPresented: $viewModel.fullscreenAttachmentPresented) {
                 let attachments = sections.flatMap { section in section.rows.flatMap { $0.message.attachments } }
                 let index = attachments.firstIndex { $0.id == viewModel.fullscreenAttachmentItem?.id }
 
